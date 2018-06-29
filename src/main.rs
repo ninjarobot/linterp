@@ -5,8 +5,11 @@ use num_traits::identities::zero;
 
 use std::fmt;
 
-struct Coordinate<T> {
+/// A 2D coordinate.
+pub struct Coordinate<T> {
+    /// x-position
     x:T,
+    /// y-position
     y:T
 }
 
@@ -16,6 +19,7 @@ impl <T: fmt::Display> fmt::Display for Coordinate<T> {
     }
 }
 
+/// Interpolates the y-position given two 2D coordinates and an x-position.
 fn linterp<T>(c1: &Coordinate<T>, c2: &Coordinate<T>, x:T) -> Coordinate<T> where T: num_traits::Num + Copy {
     let y = c1.y + (x - c1.x) * (c2.y - c1.y) / (c2.x - c1.x);
     Coordinate {
@@ -24,6 +28,7 @@ fn linterp<T>(c1: &Coordinate<T>, c2: &Coordinate<T>, x:T) -> Coordinate<T> wher
     }
 }
 
+/// Averages a vector of 2D coordinates.
 fn average(coordinates: &Vec<Coordinate<f64>>) -> Coordinate<f64> {
     let intermediate = coordinates.iter().fold(
         Coordinate::<f64> {x:zero(), y:zero()},
