@@ -1,0 +1,7 @@
+[package]
+name = "linterp"
+version = "0.1.0"
+authors = ["Dave Curylo <david.curylo@virtustream.com>"]
+
+[dependencies]
+num-traits = "0.2"
